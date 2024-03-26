@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  IFoodQuality
+
+  Created by amine maza on 22/03/2024.
+  
+*/
+
+"appname" = "FoodQuality";
+
+"welcome" = "Welcome to FoodQuality";
+
+"textfield.username" = "username";
+"textfield.password" = "password";
+"textfield.newpassword" = "New password";
+"textfield.validatepassword" = "Validate password";
+
+"button.send" = "Send";
+
+"loginview.title" = "Provide your credentials";
+"newpasswordview.title" = "Setup your password";
