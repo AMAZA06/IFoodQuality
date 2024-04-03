@@ -12,11 +12,28 @@ class LoginViewViewModel: ObservableObject {
     @Published var username = ""
     @Published var password = ""
     
-    func login() {
-        AuthenticationApi().login(completion: {_ in
-            
-        }, loginRequest: LoginRequest(mail: username, password: password))
+    @Published var isLoggedIn = false
+    @Published var error: String = ""
+    
+    func login() async {
+        do {
+            let responseData = try await AuthenticationApi().login(loginRequest:  LoginRequest(mail: username, password: password))
+            await MainActor.run {
+                self.isLoggedIn = true
+                self.error = ""
+                UserDefaults.standard.set(responseData.access_token, forKey:AppConstant.ACCESS_TOKEN.rawValue)
+            }
+        } catch {
+            await MainActor.run {
+                self.isLoggedIn = false
+                self.error = error.localizedDescription
+            }
+        }
     }
     
+    func logout() {
+        isLoggedIn = false
+        UserDefaults.standard.removeObject( forKey:AppConstant.ACCESS_TOKEN.rawValue)
+    }
     
 }

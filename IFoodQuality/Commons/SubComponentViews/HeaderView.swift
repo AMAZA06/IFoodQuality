@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HeaderView: View {
-    var language = "EN"
-    var isPreviousPossible = false
+    
+    var isPreviousPossible: Bool
+    var language = "EN" 
     
     var body: some View {
         VStack {
@@ -54,5 +55,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView()
+    HeaderView(isPreviousPossible: true)
 }

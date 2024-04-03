@@ -24,7 +24,7 @@ struct NewPasswordView: View {
     var body: some View {
         VStack {
             
-            HeaderView(language: language, isPreviousPossible: isPreviousPossible)
+            HeaderView(isPreviousPossible: isPreviousPossible)
             
             Spacer()
             

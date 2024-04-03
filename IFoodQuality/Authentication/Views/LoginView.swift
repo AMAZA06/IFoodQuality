@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoginView: View {
-    private let language = "EN"
     private let isPreviousPossible = false
         
     private let panelHeight = Double(UIScreen.main.bounds.height) / 4
@@ -16,11 +15,13 @@ struct LoginView: View {
         
     private let buttonHeight = Double(UIScreen.main.bounds.height / 20.0)
     
-    @ObservedObject private var loginViewModel = LoginViewViewModel()
+    private let errorMessage:String = ""
+    
+    @ObservedObject var loginViewViewModel: LoginViewViewModel
         
     var body: some View {
         VStack {
-            HeaderView(language: language, isPreviousPossible: isPreviousPossible)
+            HeaderView(isPreviousPossible: isPreviousPossible)
             
             Spacer()
             
@@ -28,10 +29,10 @@ struct LoginView: View {
                 
             Spacer()
             
-            
             HStack {
                 Text(LocalizedStringKey("loginview.title"))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: UIScreen.main.bounds.width
+                           , alignment: .leading)
             }.frame(width: panelWidth)
             
             ZStack {
@@ -45,31 +46,42 @@ struct LoginView: View {
                 VStack {
                     Form {
                         Section {
-                            TextField(LocalizedStringKey("textfield.username"), text: $loginViewModel.username)
+                            TextField(LocalizedStringKey("textfield.username"), text: $loginViewViewModel.username)
                                 .autocorrectionDisabled()
                                 .textInputAutocapitalization(.never)
                             
                         }
                         Section {
-                            SecureField(LocalizedStringKey("textfield.password"), text: $loginViewModel.password)
+                            SecureField(LocalizedStringKey("textfield.password"), text: $loginViewViewModel.password)
                         }
-                    }.frame(width: panelWidth * 0.95, alignment: .center)
+                    }.frame(width: panelWidth * 0.95, height: 200,alignment: .center)
                         .colorScheme(.light)
                         .scrollContentBackground(.hidden)
                         .scrollDisabled(true)
-                }
+                    
+                    if (!loginViewViewModel.isLoggedIn &&
+                        loginViewViewModel.error != "") {
+                        Text(loginViewViewModel.error)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                }.frame(maxHeight: panelHeight / 1.5)
             }
             .frame(maxWidth: panelWidth, maxHeight: panelHeight, alignment: .center)
             
             Spacer()
             
-            PrimaryButtonView(buttonWidth: panelWidth, buttonHeight: buttonHeight, buttonLabel: String(localized:"button.send"), action: loginViewModel.login)
+            PrimaryButtonView(buttonWidth: panelWidth, buttonHeight: buttonHeight, buttonLabel: String(localized:"button.send"), action: {
+                Task {
+                    await loginViewViewModel.login()
+                }
+            })
             
             Spacer().frame(height: UIScreen.main.bounds.height / 3)
             
         }.background(Color(uiColor: .background)
-            .frame(width: UIScreen.main.bounds.width * 2,
-                   height: UIScreen.main.bounds.height * 2))
+            .frame(width: UIScreen.main.bounds.width,
+                   height: UIScreen.main.bounds.height))
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height)
         
@@ -77,5 +89,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(loginViewViewModel: LoginViewViewModel())
 }

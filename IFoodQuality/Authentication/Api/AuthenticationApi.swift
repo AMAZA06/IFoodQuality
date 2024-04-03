@@ -17,10 +17,10 @@ struct AuthenticationApi {
     
     let loginEndpoint = "/authenticate"
     
-    func login(completion: @escaping (LoginResponseData) -> Void, loginRequest: LoginRequest) {
-        var urlComponent = constructUrl(endpoint: loginEndpoint)
+    func login(loginRequest: LoginRequest) async throws -> LoginResponseData {
+        let urlComponent = constructUrl(endpoint: loginEndpoint)
         guard let url = urlComponent.url else {
-            return
+            throw NetworkError.unknown
         }
         
         var request = constructRequest(url: url, httpMethod: "post")
@@ -28,21 +28,22 @@ struct AuthenticationApi {
         do {
             request.httpBody = try JSONEncoder().encode(loginRequest)
         } catch {
+            throw NetworkError.unknown
         }
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            if let data = data {
-                let response = try? JSONDecoder().decode(LoginResponseData.self, from: data)
-                
-                if let response = response {
-                    completion(response)
-                } else {
-                }
-            } else {
-                if let error = error {
-                }
-            }
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != HttpResponseCode.SUCCESS.rawValue {
+                throw NetworkError.httpStatusCodeNotOK(code: httpResponse.statusCode)
         }
-        task.resume()
+        
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .useDefaultKeys
+            return try decoder.decode(LoginResponseData.self
+                                      , from: data)
+        } catch {
+            throw NetworkError.unknown
+        }
     }
     
     

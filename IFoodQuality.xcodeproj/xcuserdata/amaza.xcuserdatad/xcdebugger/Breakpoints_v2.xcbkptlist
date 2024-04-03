@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "30A8EE6F-BCED-4F50-9887-4BD33F3F209B"
-            shouldBeEnabled = "Yes"
+            uuid = "E7F28C49-1F16-41EC-96D3-36D638DF308D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IFoodQuality/Authentication/Api/AuthenticationApi.swift"
+            filePath = "IFoodQuality/Commons/Http/NetworkError.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "login(completion:loginRequest:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "description()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

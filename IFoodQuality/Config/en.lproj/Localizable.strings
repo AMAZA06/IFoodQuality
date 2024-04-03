@@ -8,14 +8,29 @@
 
 "appname" = "FoodQuality";
 
-"welcome" = "Welcome to FoodQuality";
 
+
+// Texfield labels
 "textfield.username" = "username";
 "textfield.password" = "password";
 "textfield.newpassword" = "New password";
 "textfield.validatepassword" = "Validate password";
 
+// Button label
 "button.send" = "Send";
 
+//App labels
+"welcome" = "Welcome to FoodQuality";
 "loginview.title" = "Provide your credentials";
 "newpasswordview.title" = "Setup your password";
+"task" = "Task";
+"menu.home" = "Home";
+"menu.features" = "Features";
+"menu.profile" = "Profile";
+
+//Error
+"error.api.unauthorized" = "You are not authorized for this feature";
+"error.api.unauthenticated" = "You must be authencated";
+"error.response.nil" = "Error while fetching data";
+"error.occured" = "An error occured";
+"error.bad-request" = "Bad request";

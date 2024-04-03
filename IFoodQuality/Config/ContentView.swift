@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var loginViewModel = LoginViewViewModel()
+    
     var body: some View {
-        ZStack {
-           
-            VStack {
-                LoginView()
-            } 
+        if (loginViewModel.isLoggedIn) {
+            MenuView(loginViewViewModel: loginViewModel)
+        } else {
+            LoginView(loginViewViewModel: loginViewModel)
         }
     }
 }
