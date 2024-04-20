@@ -10,6 +10,7 @@ import Foundation
 enum NetworkError: Error {
     case httpStatusCodeNotOK(code: Int)
     case responseDataNil
+    case decodingError
     case unknown
     
     func description() -> String {
@@ -27,6 +28,8 @@ enum NetworkError: Error {
         } else {
             switch self {
             case .responseDataNil:
+                return NSLocalizedString("error.response.nil", comment: "")
+            case .decodingError:
                 return NSLocalizedString("error.response.nil", comment: "")
             case .unknown:
                 return NSLocalizedString("error.occured", comment: "")

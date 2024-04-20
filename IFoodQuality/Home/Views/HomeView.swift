@@ -18,18 +18,13 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            HeaderView(isPreviousPossible: isPreviousPossible)
-            
-            UserPictureView()
-                .padding()
-            
+            Spacer()
             Text(username)
             Text(userRole).padding()
-            
+            Spacer()
             ZStack {
                 Rectangle()
-                    .foregroundColor(.panel)
-                    .opacity(0.3)
+                    .opacity(0.05)
                     .shadow(radius: 20)
                     .cornerRadius(6.0)
                 
@@ -38,12 +33,10 @@ struct HomeView: View {
                 
             }.frame(width: UIScreen.main.bounds.width * 0.88, height: UIScreen.main.bounds.height * 0.45)
             Spacer()
-            
-        }.background(Color(uiColor: .background)
-            .frame(width: UIScreen.main.bounds.width * 2,
+            Spacer()
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom)
+            .frame(width: UIScreen.main.bounds.width,
                    height: UIScreen.main.bounds.height * 2))
-        .frame(width: UIScreen.main.bounds.width,
-               height: UIScreen.main.bounds.height)
     }
 }
 

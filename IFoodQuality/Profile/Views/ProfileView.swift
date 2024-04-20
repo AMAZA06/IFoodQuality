@@ -9,25 +9,19 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @ObservedObject var loginViewViewModel: LoginViewViewModel
+    @StateObject var loginViewViewModel: LoginViewViewModel
+    
+    @State var profilPicture: Data?
     
     var body: some View {
-        VStack {
-            ZStack {
-                Rectangle()
-                    .cornerRadius(8.0)
-                    .foregroundColor(.panel)
-                
-                Button("logout") {
-                    loginViewViewModel.logout()
-                }
-            }.frame(width: UIScreen.main.bounds.width * 0.9, height: 50)
-            
-        }.background(Color(uiColor: .background)
-            .frame(width: UIScreen.main.bounds.width * 2,
-                   height: UIScreen.main.bounds.height * 2))
-        .frame(width: UIScreen.main.bounds.width,
-               height: UIScreen.main.bounds.height)
+        ZStack {
+            LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom).edgesIgnoringSafeArea(.all) 
+            VStack {
+                Spacer()
+                PictureView(dataPicture: $profilPicture)
+                ProfileFeaturesView(loginViewViewModel: loginViewViewModel)
+            }
+        }
     }
 }
 

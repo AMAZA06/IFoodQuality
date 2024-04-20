@@ -15,13 +15,11 @@ struct LoginView: View {
         
     private let buttonHeight = Double(UIScreen.main.bounds.height / 20.0)
     
-    private let errorMessage:String = ""
-    
     @ObservedObject var loginViewViewModel: LoginViewViewModel
         
     var body: some View {
         VStack {
-            HeaderView(isPreviousPossible: isPreviousPossible)
+            HeaderView()
             
             Spacer()
             
@@ -36,12 +34,6 @@ struct LoginView: View {
             }.frame(width: panelWidth)
             
             ZStack {
-                
-                Rectangle()
-                    .foregroundColor(.panel)
-                    .opacity(0.3)
-                    .shadow(radius: 20)
-                    .cornerRadius(6.0)
                 
                 VStack {
                     Form {
@@ -60,8 +52,8 @@ struct LoginView: View {
                         .scrollDisabled(true)
                     
                     if (!loginViewViewModel.isLoggedIn &&
-                        loginViewViewModel.error != "") {
-                        Text(loginViewViewModel.error)
+                        loginViewViewModel.errorMessage != nil) {
+                        Text(loginViewViewModel.errorMessage!)
                             .foregroundColor(.red)
                         Spacer()
                     }
@@ -71,17 +63,18 @@ struct LoginView: View {
             
             Spacer()
             
-            PrimaryButtonView(buttonWidth: panelWidth, buttonHeight: buttonHeight, buttonLabel: String(localized:"button.send"), action: {
+            PrimaryButtonView(buttonLabel: {
+                Label(LocalizedStringKey("button.send"), systemImage: "")
+            }, action: {
                 Task {
                     await loginViewViewModel.login()
                 }
-            })
+            }).padding(.bottom, UIScreen.main.bounds.height / 3)
             
-            Spacer().frame(height: UIScreen.main.bounds.height / 3)
             
-        }.background(Color(uiColor: .background)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom)
             .frame(width: UIScreen.main.bounds.width,
-                   height: UIScreen.main.bounds.height))
+                   height: UIScreen.main.bounds.height * 2))
         .frame(width: UIScreen.main.bounds.width,
                height: UIScreen.main.bounds.height)
         

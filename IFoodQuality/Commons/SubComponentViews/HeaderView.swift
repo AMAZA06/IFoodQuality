@@ -9,13 +9,13 @@ import SwiftUI
 
 struct HeaderView: View {
     
-    var isPreviousPossible: Bool
-    var language = "EN" 
+    private var isPreviousPossible = false
+    var language = "EN"
     
     var body: some View {
         VStack {
             Spacer()
-                .frame(height:UIScreen.main.bounds.height / 20)
+                .frame(height:UIScreen.main.bounds.height / 30)
             HStack {
                 if (isPreviousPossible) {
                     Button(action: {
@@ -55,5 +55,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView(isPreviousPossible: true)
+    HeaderView()
 }

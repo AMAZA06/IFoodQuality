@@ -13,27 +13,36 @@ class LoginViewViewModel: ObservableObject {
     @Published var password = ""
     
     @Published var isLoggedIn = false
-    @Published var error: String = ""
+    @Published var errorMessage : String?
     
     func login() async {
         do {
-            let responseData = try await AuthenticationApi().login(loginRequest:  LoginRequest(mail: username, password: password))
-            await MainActor.run {
-                self.isLoggedIn = true
-                self.error = ""
-                UserDefaults.standard.set(responseData.access_token, forKey:AppConstant.ACCESS_TOKEN.rawValue)
-            }
+            let loginResponseData = try await AuthenticationApi().login(loginRequest:  LoginRequest(mail: username, password: password))
+            await updateUI(loginResponseData: loginResponseData)
+        } catch let error as NetworkError {
+            await reportError(error.description())
         } catch {
-            await MainActor.run {
-                self.isLoggedIn = false
-                self.error = error.localizedDescription
-            }
+            await reportError(error.localizedDescription)
         }
     }
     
     func logout() {
         isLoggedIn = false
         UserDefaults.standard.removeObject( forKey:AppConstant.ACCESS_TOKEN.rawValue)
+    }
+    
+    
+    @MainActor
+    func updateUI(loginResponseData: LoginResponseData) {
+        isLoggedIn = true
+        errorMessage = nil
+        UserDefaults.standard.set(loginResponseData.access_token, forKey:AppConstant.ACCESS_TOKEN.rawValue)
+    }
+    
+    @MainActor
+    private func reportError(_ error: String) {
+        isLoggedIn = false
+        errorMessage = error
     }
     
 }

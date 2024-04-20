@@ -15,11 +15,19 @@
 "textfield.password" = "password";
 "textfield.newpassword" = "New password";
 "textfield.validatepassword" = "Validate password";
+"textfield.search" = "Search";
+"textfield.restaurant.name" = "Restaurant name";
+"textfield.restaurant.location" = "Restaurant location";
+"textfield.restaurant.contact.number" = "Contact number";
+"textfield.restaurant.contact.mail" = "Contact mail";
+"textfield.restaurant.description" = "Description";
+"textfield.restaurant.norestaurant" = "You have no restaurant yet, try to add one";
 
 // Button label
 "button.send" = "Send";
+"button.filter" = "Filter";
 
-//App labels
+//Application labels
 "welcome" = "Welcome to FoodQuality";
 "loginview.title" = "Provide your credentials";
 "newpasswordview.title" = "Setup your password";
@@ -27,6 +35,12 @@
 "menu.home" = "Home";
 "menu.features" = "Features";
 "menu.profile" = "Profile";
+"profile.myprofile" = "My profile";
+"profile.myInformation" = "My informations";
+
+//Features labels
+"features.restaurants" = "My restaurants";
+"features.users" = "My employees";
 
 //Error
 "error.api.unauthorized" = "You are not authorized for this feature";
@@ -34,3 +48,4 @@
 "error.response.nil" = "Error while fetching data";
 "error.occured" = "An error occured";
 "error.bad-request" = "Bad request";
+"error.decoding" = "An error occured during decoding object from server";

@@ -15,7 +15,6 @@ struct NewPasswordView: View {
     private let panelHeight = Double(UIScreen.main.bounds.height) / 4
     private let panelWidth = Double(UIScreen.main.bounds.width) / 1.15
     
-    private let buttonHeight = Double(UIScreen.main.bounds.height / 20.0)
 
     @State private var password = ""
     @State private var newPassword = ""
@@ -24,9 +23,10 @@ struct NewPasswordView: View {
     var body: some View {
         VStack {
             
-            HeaderView(isPreviousPossible: isPreviousPossible)
+            HeaderView()
             
             Spacer()
+            
             
             
             HStack {
@@ -35,11 +35,6 @@ struct NewPasswordView: View {
             }.frame(width: panelWidth)
             
             ZStack {
-                Rectangle()
-                    .foregroundColor(.panel)
-                    .opacity(0.3)
-                    .shadow(radius: 20)
-                    .cornerRadius(6.0)
                 
                 VStack {
                     Form {
@@ -60,7 +55,12 @@ struct NewPasswordView: View {
             Spacer()
                 .frame(height: panelHeight / 8)
             
-            PrimaryButtonView(buttonWidth: panelWidth, buttonHeight: buttonHeight, buttonLabel: String(localized: "button.send"))
+            PrimaryButtonView(
+                              buttonLabel: {
+                Label(LocalizedStringKey("button.send"), systemImage: "")
+            }, action: {
+                print("text")
+            })
             
             Spacer().frame(height: UIScreen.main.bounds.height / 3)
             
@@ -68,7 +68,7 @@ struct NewPasswordView: View {
             
             
             
-        }.background(Color(uiColor: .background)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom)
             .frame(width: UIScreen.main.bounds.width * 2,
                    height: UIScreen.main.bounds.height * 2))
         .frame(width: UIScreen.main.bounds.width,

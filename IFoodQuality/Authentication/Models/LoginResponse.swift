@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct LoginResponse: Decodable {
+struct LoginResponse: Codable {
     let data: LoginResponseData
 }
 
-struct LoginResponseData: Decodable {
+struct LoginResponseData: Codable {
     let access_token: String
     let refresh_token: String
 }

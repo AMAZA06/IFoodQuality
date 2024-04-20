@@ -9,22 +9,19 @@ import SwiftUI
 
 struct PrimaryButtonView: View {
     
-    var buttonWidth = 0.0
-    var buttonHeight = 0.0
-    var buttonLabel = ""
+    var buttonLabel: () -> Label<Text, Image>
     var action : () -> Void = {}
-    
+    var width = Int(UIScreen.main.bounds.width * 0.8)
+    var height = 50
     
     var body: some View {
-        Button(action: action, label : {
-            Text(buttonLabel)
-                .frame(width: buttonWidth, height: buttonHeight)
-        })
-        .buttonStyle(PrimaryButtonViewConfig())
-    
+        Button(action: action, label : buttonLabel)
+        .buttonStyle(PrimaryButtonViewConfig(width: width, height: height))
     }
 }
 
 #Preview {
-    PrimaryButtonView()
+    PrimaryButtonView(buttonLabel: {
+        Label("Button", systemImage: "")
+    })
 }

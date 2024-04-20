@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginRequest: Encodable {
+struct LoginRequest: Codable {
     let mail: String
     let password: String
 }

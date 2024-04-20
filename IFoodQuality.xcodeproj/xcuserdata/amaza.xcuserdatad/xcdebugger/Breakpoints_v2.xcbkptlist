@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E7F28C49-1F16-41EC-96D3-36D638DF308D"
-            shouldBeEnabled = "No"
+            uuid = "5B5E793F-1636-4291-881D-8D07069E302B"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IFoodQuality/Commons/Http/NetworkError.swift"
+            filePath = "IFoodQuality/Restaurant/ViewsModels/RestaurantListViewViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "description()"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getOwnedRestaurant()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A2C6621-2D52-4814-9772-ED6AC6F56991"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IFoodQuality/Restaurant/ViewsModels/RestaurantListViewViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getOwnedRestaurant()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

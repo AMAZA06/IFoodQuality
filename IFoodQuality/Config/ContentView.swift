@@ -11,6 +11,7 @@ struct ContentView: View {
     
     @StateObject var loginViewModel = LoginViewViewModel()
     
+    
     var body: some View {
         if (loginViewModel.isLoggedIn) {
             MenuView(loginViewViewModel: loginViewModel)
