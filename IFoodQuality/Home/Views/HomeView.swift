@@ -34,7 +34,7 @@ struct HomeView: View {
             }.frame(width: UIScreen.main.bounds.width * 0.88, height: UIScreen.main.bounds.height * 0.45)
             Spacer()
             Spacer()
-        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .bottom, endPoint: .top)
             .frame(width: UIScreen.main.bounds.width,
                    height: UIScreen.main.bounds.height * 2))
     }

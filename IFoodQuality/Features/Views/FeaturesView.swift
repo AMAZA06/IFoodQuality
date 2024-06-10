@@ -11,7 +11,7 @@ struct FeaturesView: View {
     var body: some View {
         VStack {
             FeaturesListView()
-            }
+        }
     }
 }
 

@@ -24,16 +24,16 @@ enum Features: CaseIterable, Hashable {
     var icon: String {
         switch self {
             case .restaurant:
-                return "house.lodge"
+                return "house"
             case .users:
-                return "person.fill.questionmark"
+                return "person"
         }
     }
     
     @ViewBuilder var view: some View {
         switch self {
             case .restaurant:
-                RestaurantsView(restaurantSearch: "")
+                RestaurantsView()
             case .users:
                 UsersView()
         }

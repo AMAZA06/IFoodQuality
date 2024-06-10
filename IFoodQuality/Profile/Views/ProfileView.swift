@@ -14,14 +14,11 @@ struct ProfileView: View {
     @State var profilPicture: Data?
     
     var body: some View {
-        ZStack {
-            LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom).edgesIgnoringSafeArea(.all) 
-            VStack {
-                Spacer()
-                PictureView(dataPicture: $profilPicture)
-                ProfileFeaturesView(loginViewViewModel: loginViewViewModel)
-            }
-        }
+        VStack {
+            Spacer()
+            PictureView(dataPicture: $profilPicture)
+            ProfileFeaturesView(loginViewViewModel: loginViewViewModel)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
     }
 }
 

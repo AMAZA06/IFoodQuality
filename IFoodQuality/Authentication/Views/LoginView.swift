@@ -16,6 +16,13 @@ struct LoginView: View {
     private let buttonHeight = Double(UIScreen.main.bounds.height / 20.0)
     
     @ObservedObject var loginViewViewModel: LoginViewViewModel
+    
+    
+    @FocusState var isFocused: UUID?
+    @State var textfieldsIds: [UUID] = [
+        UUID(),
+        UUID()
+    ]
         
     var body: some View {
         VStack {
@@ -33,33 +40,27 @@ struct LoginView: View {
                            , alignment: .leading)
             }.frame(width: panelWidth)
             
-            ZStack {
-                
-                VStack {
-                    Form {
-                        Section {
-                            TextField(LocalizedStringKey("textfield.username"), text: $loginViewViewModel.username)
-                                .autocorrectionDisabled()
-                                .textInputAutocapitalization(.never)
-                            
-                        }
-                        Section {
-                            SecureField(LocalizedStringKey("textfield.password"), text: $loginViewViewModel.password)
-                        }
-                    }.frame(width: panelWidth * 0.95, height: 200,alignment: .center)
-                        .colorScheme(.light)
-                        .scrollContentBackground(.hidden)
-                        .scrollDisabled(true)
+            VStack {
+                if (!loginViewViewModel.isLoading) {
+                    PrimaryTextFieldView(text: $loginViewViewModel.username, label: LocalizedStringKey("textfield.username"), isFocused: _isFocused, textfieldId: $textfieldsIds[0])
+                        .padding(.bottom, 8)
+                    PrimaryTextFieldView(text: $loginViewViewModel.password, label: LocalizedStringKey("textfield.password"), isFocused: _isFocused, textfieldId: $textfieldsIds[1], isPassword: true)
+                        .padding(.bottom, 8)
                     
                     if (!loginViewViewModel.isLoggedIn &&
                         loginViewViewModel.errorMessage != nil) {
                         Text(loginViewViewModel.errorMessage!)
                             .foregroundColor(.red)
+                    }
+                } else {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        LoadingView()
                         Spacer()
                     }
-                }.frame(maxHeight: panelHeight / 1.5)
-            }
-            .frame(maxWidth: panelWidth, maxHeight: panelHeight, alignment: .center)
+                }
+                
+            }.frame(width: panelWidth, height: 220, alignment: .leading)
             
             Spacer()
             
@@ -72,7 +73,7 @@ struct LoginView: View {
             }).padding(.bottom, UIScreen.main.bounds.height / 3)
             
             
-        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .bottom, endPoint: .top)
             .frame(width: UIScreen.main.bounds.width,
                    height: UIScreen.main.bounds.height * 2))
         .frame(width: UIScreen.main.bounds.width,

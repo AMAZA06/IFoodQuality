@@ -12,8 +12,6 @@ struct MyInformationsView: View {
     @StateObject var viewModel =    MyInformationsViewViewModel()
     
     var body: some View {
-        
-        
         VStack {
             Text(LocalizedStringKey(""))
             
@@ -32,8 +30,8 @@ struct MyInformationsView: View {
                 Task {
                     await viewModel.fetchMyProfile()
                 }
-            }
-        }
+            }.scrollContentBackground(.hidden)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
     }
 }
 

@@ -18,13 +18,24 @@ struct HttpBuilder {
     private static let AUTHORIZATION_HEADER = "Authorization"
     private static let BEARER = "Bearer "
     
-    public static func constructUrl(path: String, endpoint: String) -> URLComponents {
+    public static func constructUrl(path: String, endpoint: String, requestParam: [String: String]? = nil) -> URLComponents {
+        var queryItems: [URLQueryItem] = []
+        if let safeRequestParam = requestParam {
+            for (key, value) in safeRequestParam {
+                let encodedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                let encodedValue = value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                queryItems.append(URLQueryItem(name: encodedKey, value: encodedValue))
+            }
+        }
+        
         var urlComponent = URLComponents()
         urlComponent.scheme = scheme
         urlComponent.host = host
         urlComponent.port = port
         urlComponent.path = initialPath + path + endpoint
-        
+        if (!queryItems.isEmpty) {
+            urlComponent.queryItems = queryItems
+        }
         return urlComponent
     }
     

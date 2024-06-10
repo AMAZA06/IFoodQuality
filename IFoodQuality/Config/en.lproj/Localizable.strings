@@ -21,14 +21,30 @@
 "textfield.restaurant.contact.number" = "Contact number";
 "textfield.restaurant.contact.mail" = "Contact mail";
 "textfield.restaurant.description" = "Description";
-"textfield.restaurant.norestaurant" = "You have no restaurant yet, try to add one";
+"textfield.zone.name" = "Zone name";
+"textfield.zone.description" = "Zone description";
+"textfield.machine.label" = "Machine label";
+"textfield.machine.reference" = "Machine reference";
+"textfield.machine.target.zone" = "Target zone";
+"textfield.user.name" = "Fullname";
+"textfield.user.mail" = "Mail";
+"textfield.user.phone.number" = "Phone number";
+"textfield.user.role" = "Role";
+"textfield.user.starting.date" = "Starting date";
+"textfield.user.provide.ending.date" = "Press to provide ending date";
+"textfield.user.hide.ending.date" = "Press to hide ending date";
+"textfield.user.ending.date" = "Ending date";
 
 // Button label
 "button.send" = "Send";
+"button.reset" = "Reset";
 "button.filter" = "Filter";
+"button.modify" = "Modify";
 
 //Application labels
 "welcome" = "Welcome to FoodQuality";
+"loading" = "Loading...";
+"no.internet" = "Please connect to internet";
 "loginview.title" = "Provide your credentials";
 "newpasswordview.title" = "Setup your password";
 "task" = "Task";
@@ -37,6 +53,25 @@
 "menu.profile" = "Profile";
 "profile.myprofile" = "My profile";
 "profile.myInformation" = "My informations";
+"restaurant.add" = "Add a new restaurant";
+"restaurant.norestaurant" = "You have no restaurant yet, try to add one";
+"restaurant.tab.restaurant" = "Restaurant";
+"restaurant.tab.zones" = "Zones";
+"restaurant.tab.machines" = "Machines";
+"zone.nozone" = "You have no zone yet, try to add one";
+"zone.add" = "Add a new zone";
+"machine.add" = "Add a new machine";
+"machine.nozone" = "You have no zone yet, your machine will not be attached to a zone";
+"machine.nomachine" = "You have no machine yet, try to add one";
+"user.add" = "Add a user";
+
+//Notifications
+"restaurant.added" = "Restaurant added successfully";
+"restaurant.deleted" = "Restaurant deleted successfully";
+"zone.added" = "Zone added successfully";
+"zone.deleted" = "Zone deleted successfully";
+"machine.added" = "Machine added successfully";
+"machine.deleted" = "Machine deleted successfully";
 
 //Features labels
 "features.restaurants" = "My restaurants";

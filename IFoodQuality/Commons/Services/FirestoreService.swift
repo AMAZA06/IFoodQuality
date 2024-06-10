@@ -18,14 +18,14 @@ struct FirestoreService {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
+        let image = UIImage(data: imageData)!
+        let compressedImageData = image.jpegData(compressionQuality: 0.1)!
+        
         let storageRef = Storage.storage().reference().child(filename)
         
-        guard let jpegData = data else {
-            return nil
-        }
         do {
         
-            let upload = try await storageRef.putDataAsync(jpegData, metadata: metadata)
+            _ = try await storageRef.putDataAsync(compressedImageData, metadata: metadata)
             return  storageRef.fullPath
         } catch {
             throw error

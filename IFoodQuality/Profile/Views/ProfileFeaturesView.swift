@@ -35,8 +35,9 @@ struct ProfileFeaturesView: View {
                 .navigationDestination(for: ProfileFeatures.self) { profileFeature in
                     profileFeature.view
                 }
-            }
+            }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
         }
+        .scrollContentBackground(.hidden)
     }
 }
 

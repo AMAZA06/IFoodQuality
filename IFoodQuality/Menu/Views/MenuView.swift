@@ -43,7 +43,7 @@ struct MenuView: View {
                     .background(.menu)
                     .padding()
             }.frame(height: UIScreen.main.bounds.height * 0.9)
-        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .topLeading, endPoint: .bottom)
+        }.background(LinearGradient(colors: [Color(.backgroundGolden), Color(.backgroundGreen)], startPoint: .bottom, endPoint: .top)
             .frame(width: UIScreen.main.bounds.width,
                    height: UIScreen.main.bounds.height * 2))
     }
